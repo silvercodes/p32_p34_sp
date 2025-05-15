@@ -50,6 +50,8 @@ void Run()
         Console.WriteLine("2. Get process by id");
         Console.WriteLine("3. Show threads");
         Console.WriteLine("4. Show modules");
+        Console.WriteLine("5. Start process");
+        Console.WriteLine("6. Kill process");
 
         input = Console.ReadLine();
 
@@ -66,6 +68,12 @@ void Run()
                 break;
             case "4":
                 ShowModules();
+                break;
+            case "5":
+                StartProcess();
+                break;
+            case "6":
+                KillProcess();
                 break;
         }
     }
@@ -143,7 +151,30 @@ void ShowModules()
         Console.WriteLine($"ERROR: {EX.Message}");
     }
 }
+void StartProcess()
+{
+    // Process.Start("notepad");
+    Process.Start(@"C:\Program Files\Google\Chrome\Application\chrome.exe", "https://wikipedia.org --incognito");
+    // Process.Start(@"C:\Users\ThinkPad\Desktop\test\x64\Debug\test.exe");
+}
+void KillProcess()
+{
+    Console.Write("Enter PID: ");
+    string? intput = Console.ReadLine();
 
+    try
+    {
+        int pid = int.Parse(intput);
+
+        Process p = Process.GetProcessById(pid);
+
+        p.Kill();
+    }
+    catch (Exception EX)
+    {
+        Console.WriteLine($"ERROR: {EX.Message}");
+    }
+}
 #endregion
 
 
