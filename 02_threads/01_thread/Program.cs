@@ -312,7 +312,4 @@ ThreadPool.GetMinThreads(out count, out completion);
 
 Console.WriteLine($"{count} {completion}");
 
-
-
-
 #endregion
